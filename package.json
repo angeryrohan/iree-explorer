@@ -5,6 +5,14 @@
   "version": "0.2.4",
   "publisher": "iree-explorer",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angeryrohan/iree-explorer.git"
+  },
+  "homepage": "https://github.com/angeryrohan/iree-explorer#readme",
+  "bugs": {
+    "url": "https://github.com/angeryrohan/iree-explorer/issues"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -35,7 +43,7 @@
       },
       {
         "command": "ireeExplorer.compileTo",
-        "title": "How Far to Compile (Stop After Phase)\u2026",
+        "title": "How Far to Compile (Stop After Phase)…",
         "category": "IREE",
         "icon": "$(debug-step-out)"
       },
@@ -100,19 +108,19 @@
       },
       {
         "command": "ireeExplorer.sortPasses",
-        "title": "Sort Passes\u2026",
+        "title": "Sort Passes…",
         "category": "IREE",
         "icon": "$(list-ordered)"
       },
       {
         "command": "ireeExplorer.sortDispatches",
-        "title": "Sort Dispatches\u2026",
+        "title": "Sort Dispatches…",
         "category": "IREE",
         "icon": "$(list-ordered)"
       },
       {
         "command": "ireeExplorer.setOutputDir",
-        "title": "Change Output Folder\u2026",
+        "title": "Change Output Folder…",
         "category": "IREE",
         "icon": "$(folder)"
       },
@@ -128,7 +136,7 @@
       },
       {
         "command": "ireeExplorer.manageTargets",
-        "title": "Manage Targets (add/remove backend)\u2026",
+        "title": "Manage Targets (add/remove backend)…",
         "category": "IREE",
         "icon": "$(settings-gear)"
       },
@@ -167,7 +175,7 @@
     "viewsWelcome": [
       {
         "view": "ireeExplorer.pipeline",
-        "contents": "No compilation yet.\n[$(play) Compile Active File](command:ireeExplorer.compile)\n[$(cpu) Select Target](command:ireeExplorer.selectTarget)\n[$(debug-step-out) How Far to Compile\u2026](command:ireeExplorer.compileTo)"
+        "contents": "No compilation yet.\n[$(play) Compile Active File](command:ireeExplorer.compile)\n[$(cpu) Select Target](command:ireeExplorer.selectTarget)\n[$(debug-step-out) How Far to Compile…](command:ireeExplorer.compileTo)"
       },
       {
         "view": "ireeExplorer.dispatches",
@@ -175,7 +183,7 @@
       },
       {
         "view": "ireeExplorer.dumpFiles",
-        "contents": "The output folder of the last compile appears here.\n[$(folder) Change Output Folder\u2026](command:ireeExplorer.setOutputDir)"
+        "contents": "The output folder of the last compile appears here.\n[$(folder) Change Output Folder…](command:ireeExplorer.setOutputDir)"
       }
     ],
     "menus": {
