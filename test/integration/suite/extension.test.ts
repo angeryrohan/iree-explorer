@@ -12,6 +12,8 @@ interface Api {
   dispatches(): Array<{ info: { name: string } }>;
   tilingOpen(): boolean;
   dataFlowOpen(): boolean;
+  opDiffOpen(): boolean;
+  dataFlowRow(): boolean;
   currentDump(): { dir: string; outputPath?: string; exitCode?: number | null; cancelled?: boolean } | undefined;
 }
 
@@ -50,7 +52,7 @@ describe('IREE Explorer', () => {
     await api();
     const cmds = await vscode.commands.getCommands(true);
     for (const c of ['compile', 'cancel', 'selectTarget', 'openPipeline', 'diffWithPrevious', 'diffSelected',
-      'copyRepro', 'showTiling', 'revealDumpDir', 'clearCache']) {
+      'showOpChanges', 'copyRepro', 'showTiling', 'revealDumpDir', 'clearCache']) {
       assert.ok(cmds.includes(`ireeExplorer.${c}`), c);
     }
   });
@@ -60,6 +62,7 @@ describe('IREE Explorer', () => {
     await a.loadDump(path.join(FIXTURES, 'iree-llvm24-2026', 'matmul-llvm-cpu'));
     assert.ok(a.passes().length > 500);
     assert.strictEqual(a.dispatches().length, 1);
+    assert.ok(a.dataFlowRow());
   });
 
   it('diff with previous opens a diff editor', async () => {
@@ -71,6 +74,16 @@ describe('IREE Explorer', () => {
     const input = vscode.window.tabGroups.activeTabGroup.activeTab!.input as vscode.TabInputTextDiff;
     assert.strictEqual(input.modified.fsPath, tile.filePath);
     await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+  });
+
+  it('show op changes opens the op changes panel', async () => {
+    const a = await api();
+    const tile = a.passes().find((p) => p.passName.startsWith('iree-codegen-tile-and-distribute-to-workgroups'));
+    assert.ok(tile);
+    await vscode.commands.executeCommand('ireeExplorer.showOpChanges', tile);
+    await waitFor(() => a.opDiffOpen(), 10000);
+    await vscode.commands.executeCommand('workbench.action.closeAllEditors');
+    await waitFor(() => !a.opDiffOpen(), 10000);
   });
 
   it('copy repro writes an iree-opt command to the clipboard', async () => {

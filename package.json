@@ -77,6 +77,12 @@
         "icon": "$(diff-multiple)"
       },
       {
+        "command": "ireeExplorer.showOpChanges",
+        "title": "Show Op Changes",
+        "category": "IREE",
+        "icon": "$(symbol-operator)"
+      },
+      {
         "command": "ireeExplorer.copyRepro",
         "title": "Copy Repro Command",
         "category": "IREE",
@@ -214,6 +220,11 @@
           "group": "navigation@5"
         },
         {
+          "command": "ireeExplorer.showOpChanges",
+          "when": "view == ireeExplorer.pipeline",
+          "group": "navigation@6"
+        },
+        {
           "command": "ireeExplorer.manageTargets",
           "when": "view == ireeExplorer.pipeline",
           "group": "overflow@1"
@@ -224,14 +235,9 @@
           "group": "overflow@2"
         },
         {
-          "command": "ireeExplorer.showDataFlow",
-          "when": "view == ireeExplorer.dispatches",
-          "group": "navigation@1"
-        },
-        {
           "command": "ireeExplorer.sortDispatches",
           "when": "view == ireeExplorer.dispatches",
-          "group": "navigation@2"
+          "group": "navigation@1"
         },
         {
           "command": "ireeExplorer.setOutputDir",
@@ -259,6 +265,11 @@
           "command": "ireeExplorer.diffSelected",
           "when": "view == ireeExplorer.pipeline && viewItem == pass",
           "group": "1_diff@2"
+        },
+        {
+          "command": "ireeExplorer.showOpChanges",
+          "when": "view == ireeExplorer.pipeline && viewItem == pass",
+          "group": "1_diff@3"
         },
         {
           "command": "ireeExplorer.copyRepro",
@@ -289,6 +300,10 @@
         {
           "command": "ireeExplorer.diffWithPrevious",
           "when": "false"
+        },
+        {
+          "command": "ireeExplorer.showOpChanges",
+          "when": "ireeExplorer.hasDump"
         },
         {
           "command": "ireeExplorer.copyRepro",

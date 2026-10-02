@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "types": []
   },
-  "include": ["./**/*.ts", "../model/types.ts", "../model/tiling.ts", "../model/dataflow.ts", "../model/lowering.ts"]
+  "include": ["./**/*.ts", "../model/types.ts", "../model/tiling.ts", "../model/dataflow.ts", "../model/lowering.ts", "../model/opdiff.ts"]
 }

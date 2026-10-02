@@ -1,5 +1,6 @@
-// Dispatches TreeView: one item per dispatch function, children are the
-// dumped artifacts for its executable.
+// Dispatches TreeView: a "Data Flow" row for the whole program, then one item
+// per dispatch function whose children are the dumped artifacts for its
+// executable.
 
 import * as path from 'path';
 import * as vscode from 'vscode';
@@ -15,10 +16,20 @@ interface FileChild {
   parent: DispatchArtifact;
 }
 
-export type DispatchElement = DispatchArtifact | FileChild;
+interface DataFlowRow {
+  kind: 'dataFlow';
+}
+
+export type DispatchElement = DispatchArtifact | FileChild | DataFlowRow;
+
+const DATA_FLOW_ROW: DataFlowRow = { kind: 'dataFlow' };
 
 function isFile(e: DispatchElement): e is FileChild {
   return (e as FileChild).kind === 'file';
+}
+
+function isDataFlowRow(e: DispatchElement): e is DataFlowRow {
+  return (e as DataFlowRow).kind === 'dataFlow';
 }
 
 export function dispatchDescription(d: DispatchArtifact): string {
@@ -40,11 +51,18 @@ export class DispatchTreeProvider implements vscode.TreeDataProvider<DispatchEle
   private readonly emitter = new vscode.EventEmitter<DispatchElement | undefined | void>();
   readonly onDidChangeTreeData = this.emitter.event;
   private items: DispatchArtifact[] = [];
+  private dataFlow = false;
   sort: DispatchSort = 'name';
 
-  setDispatches(items: DispatchArtifact[]): void {
+  /** `hasDataFlow`: the compile has a flow-level program, so show the Data Flow row. */
+  setDispatches(items: DispatchArtifact[], hasDataFlow = false): void {
     this.items = items;
+    this.dataFlow = hasDataFlow;
     this.emitter.fire();
+  }
+
+  get hasDataFlowRow(): boolean {
+    return this.dataFlow;
   }
 
   get dispatches(): DispatchArtifact[] {
@@ -67,9 +85,9 @@ export class DispatchTreeProvider implements vscode.TreeDataProvider<DispatchEle
       } else {
         list.sort((a, b) => a.info.name.localeCompare(b.info.name, undefined, { numeric: true }));
       }
-      return list;
+      return this.dataFlow ? [DATA_FLOW_ROW, ...list] : list;
     }
-    if (isFile(e)) {
+    if (isFile(e) || isDataFlowRow(e)) {
       return [];
     }
     const kids: FileChild[] = [];
@@ -89,6 +107,16 @@ export class DispatchTreeProvider implements vscode.TreeDataProvider<DispatchEle
   }
 
   getTreeItem(e: DispatchElement): vscode.TreeItem {
+    if (isDataFlowRow(e)) {
+      const item = new vscode.TreeItem('Data Flow', vscode.TreeItemCollapsibleState.None);
+      item.description = 'whole program';
+      item.iconPath = new vscode.ThemeIcon('type-hierarchy');
+      item.tooltip = 'The kernels in the order the program runs them, the ops fused into each, and the tensors passed between them. Click to open.';
+      item.contextValue = 'dataFlow';
+      item.id = 'dataFlow';
+      item.command = { command: 'ireeExplorer.showDataFlow', title: 'Show Data Flow' };
+      return item;
+    }
     if (isFile(e)) {
       const item = new vscode.TreeItem(e.label, vscode.TreeItemCollapsibleState.None);
       item.iconPath = new vscode.ThemeIcon(e.icon);

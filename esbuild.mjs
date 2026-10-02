@@ -21,7 +21,7 @@ const extension = {
   external: ['vscode'],
 };
 
-const webviews = ['tiling', 'dataflow'].map((name) => ({
+const webviews = ['tiling', 'dataflow', 'opdiff'].map((name) => ({
   ...common,
   entryPoints: [`src/webview/${name}/main.ts`],
   outfile: `media/${name}/main.js`,
@@ -30,7 +30,7 @@ const webviews = ['tiling', 'dataflow'].map((name) => ({
   target: 'es2020',
 }));
 
-for (const name of ['tiling', 'dataflow']) {
+for (const name of ['tiling', 'dataflow', 'opdiff']) {
   await mkdir(`media/${name}`, { recursive: true });
   await copyFile(`src/webview/${name}/style.css`, `media/${name}/style.css`);
 }

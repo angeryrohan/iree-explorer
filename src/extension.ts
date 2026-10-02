@@ -9,6 +9,7 @@ import {
   DispatchArtifact, EXTENSION_STORAGE, gcDumpDirs, indexDump, IndexedDump, listDumpDirs, resolveOutputRoot, watchDir,
 } from './model/artifacts';
 import { findFlowDump, FlowProgram, parseFlowProgram } from './model/dataflow';
+import { diffOps, OpDiffView } from './model/opdiff';
 import { prepareRepro, previousInScope } from './model/pipeline';
 import { PassNode } from './model/types';
 import { DispatchSort, DispatchTreeProvider } from './views/dispatchTree';
@@ -16,6 +17,7 @@ import { DumpFile, DumpFilesTreeProvider } from './views/dumpFilesTree';
 import { PassSort, PipelineElement, PipelineTreeProvider } from './views/pipelineTree';
 import { IreeStatusBar } from './views/statusBar';
 import { DataFlowPanel } from './views/dataFlowPanel';
+import { OpDiffPanel } from './views/opDiffPanel';
 import { TilingPanel } from './views/tilingPanel';
 
 const LAST_DUMP_KEY = 'ireeExplorer.lastDumpDir';
@@ -45,6 +47,8 @@ export interface IreeExplorerApi {
   dispatches(): DispatchArtifact[];
   tilingOpen(): boolean;
   dataFlowOpen(): boolean;
+  opDiffOpen(): boolean;
+  dataFlowRow(): boolean;
   currentDump(): { dir: string; outputPath?: string; exitCode?: number | null; cancelled?: boolean } | undefined;
 }
 
@@ -66,6 +70,12 @@ export function activate(context: vscode.ExtensionContext): IreeExplorerApi {
       vscode.window.showInformationMessage(`IREE: ${entry} has no dumped configuration (compile past executable-configurations to see its tiling).`);
     }
   });
+  const opDiff = new OpDiffPanel(context.extensionUri, (v) => {
+    void vscode.commands.executeCommand(
+      'vscode.diff', vscode.Uri.file(v.before.file), vscode.Uri.file(v.after.file),
+      `${v.before.label} ↔ ${v.after.label}`, { preview: true },
+    );
+  });
 
   const pipelineView = vscode.window.createTreeView<PipelineElement>('ireeExplorer.pipeline', {
     treeDataProvider: pipeline, canSelectMany: true, showCollapseAll: true,
@@ -78,7 +88,7 @@ export function activate(context: vscode.ExtensionContext): IreeExplorerApi {
     treeDataProvider: dumpFiles, showCollapseAll: true,
   });
 
-  context.subscriptions.push(output, diagnostics, service, targets, status, tiling, dataFlow, pipelineView, dispatchView, dumpFilesView);
+  context.subscriptions.push(output, diagnostics, service, targets, status, tiling, dataFlow, opDiff, pipelineView, dispatchView, dumpFilesView);
 
   let current: IndexedDump | undefined;
   let indexing: Promise<void> | undefined;
@@ -92,7 +102,8 @@ export function activate(context: vscode.ExtensionContext): IreeExplorerApi {
       const idx = await indexDump(dir);
       current = idx;
       pipeline.setPasses(idx.passes);
-      dispatchTree.setDispatches(idx.dispatches);
+      // Dispatches imply the compile got past flow; otherwise look for a flow dump.
+      dispatchTree.setDispatches(idx.dispatches, idx.dispatches.length > 0 || ((await loadFlowProgram())?.graphs.length ?? 0) > 0);
       const changed = idx.passes.filter((p) => p.changed && !p.container).length;
       pipelineView.description = idx.meta
         ? `${idx.meta.targetLabel} · ${path.basename(idx.meta.inputPath)}`
@@ -112,6 +123,10 @@ export function activate(context: vscode.ExtensionContext): IreeExplorerApi {
       }
       if (dataFlow.isOpen && !quiet) {
         dataFlow.update(await loadFlowProgram());
+      }
+      if (!quiet) {
+        // The dumps it compared were overwritten.
+        opDiff.close();
       }
       // Keep the tiling panel on the same dispatch across recompiles.
       const shown = tiling.visibleDispatch;
@@ -367,6 +382,34 @@ export function activate(context: vscode.ExtensionContext): IreeExplorerApi {
     await diff(sel[0], sel[1]);
   }
 
+  /** Op Changes for two selected passes, or for one pass against the previous in its scope. */
+  async function showOpChanges(arg?: unknown, all?: unknown): Promise<void> {
+    const sel = selectedPasses(arg, all);
+    let pair: [PassNode, PassNode] | undefined;
+    if (sel.length === 2) {
+      pair = sel[0].ordinal <= sel[1].ordinal ? [sel[0], sel[1]] : [sel[1], sel[0]];
+    } else if (sel.length === 1) {
+      const prev = previousInScope(pipeline.passes, sel[0]);
+      if (!prev) {
+        vscode.window.showInformationMessage(`IREE: ${sel[0].passName} is the first pass dumped in its scope; nothing to compare against.`);
+        return;
+      }
+      pair = [prev, sel[0]];
+    }
+    if (!pair) {
+      vscode.window.showInformationMessage('IREE: select one pass (compares with the previous pass) or two passes (Cmd/Ctrl+click).');
+      return;
+    }
+    const [a, b] = pair;
+    const [beforeText, afterText] = await Promise.all([fs.readFile(a.filePath, 'utf8'), fs.readFile(b.filePath, 'utf8')]);
+    const view: OpDiffView = {
+      before: { label: PipelineTreeProvider.label(a), file: a.filePath },
+      after: { label: PipelineTreeProvider.label(b), file: b.filePath },
+      diff: diffOps(beforeText, afterText),
+    };
+    opDiff.show(view);
+  }
+
   async function copyRepro(arg?: unknown): Promise<void> {
     const n = selectedPasses(arg)[0];
     if (!n) {
@@ -501,6 +544,7 @@ export function activate(context: vscode.ExtensionContext): IreeExplorerApi {
   });
   reg('ireeExplorer.diffWithPrevious', diffWithPrevious);
   reg('ireeExplorer.diffSelected', diffSelected);
+  reg('ireeExplorer.showOpChanges', showOpChanges);
   reg('ireeExplorer.copyRepro', copyRepro);
   reg('ireeExplorer.showTiling', showTiling);
   reg('ireeExplorer.revealDumpDir', async () => {
@@ -543,6 +587,7 @@ export function activate(context: vscode.ExtensionContext): IreeExplorerApi {
     pipelineView.message = undefined;
     pipelineView.description = undefined;
     tiling.update(undefined);
+    opDiff.close();
     diagnostics.clear();
     await refreshCompilerInfo(true);
   });
@@ -639,6 +684,8 @@ export function activate(context: vscode.ExtensionContext): IreeExplorerApi {
     dispatches: () => dispatchTree.dispatches,
     tilingOpen: () => tiling.isOpen,
     dataFlowOpen: () => dataFlow.isOpen,
+    opDiffOpen: () => opDiff.isOpen,
+    dataFlowRow: () => dispatchTree.hasDataFlowRow,
     currentDump: () => (current
       ? { dir: current.dir, outputPath: current.meta?.outputPath, exitCode: current.meta?.exitCode, cancelled: current.meta?.cancelled }
       : undefined),
