@@ -2,7 +2,7 @@
   "name": "iree-explorer",
   "displayName": "IREE Explorer",
   "description": "GUI front end for IREE compilation: target selection, pass pipeline explorer, IR diffs, tiling visualisation and dispatch inspection.",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "publisher": "iree-explorer",
   "license": "Apache-2.0",
   "repository": {
