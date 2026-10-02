@@ -1,0 +1,954 @@
+===-------------------------------------------------------------------------===
+                         ... Pass statistics report ...
+===-------------------------------------------------------------------------===
+AutoInputConversionPipelinePass
+IREEImportPublicPass
+ImportMLProgramPass
+SanitizeModuleNamesPass
+DemoteF64ToF32Pass
+ConvertStreamableOpsPass
+WrapEntryPointsPass
+InlinerPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+SymbolDCEPass
+  (S) 0 num-dce'd - Number of symbols DCE'd
+AssignTargetDevicesPass
+MaterializeTargetDevicesPass
+ResolveDevicePromisesPass
+ResolveDeviceAliasesPass
+VerifyDevicesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+EraseUnusedLinalgOperandsPass
+ExpandTensorShapesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldUnitExtentDimsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+ConvertStridedContractionToContractionPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+IPOPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+HoistIntoGlobalsPass
+JitGlobalsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+TensorPadToTensorInsertSlicePass
+FixedPointIteratorPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+HoistIntoGlobalsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+HoistIntoGlobalsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+VerifyInputLegalityPass
+VerifyInitializationOrderPass
+AttributeCallGraphPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+OutlineDispatchExternsPass
+OutlineDispatchRegionsPass
+AnnotateDispatchesPass
+'flow.executable' Pipeline
+  StripDebugOpsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+DeduplicateExecutablesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FixedPointIteratorPass
+'flow.executable' Pipeline
+SymbolDCEPass
+  (S) 0 num-dce'd - Number of symbols DCE'd
+VerifyInitializationOrderPass
+VerifyInputPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+CloneToConsumersPass
+ConvertToStreamPass
+VerifyLoweringToTensorsPass
+InlinerPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+CombineInitializersPass
+FixedPointIteratorPass
+SpecializeEncodingsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+'stream.executable' Pipeline
+  EncodeDeviceTensorsPass
+MaterializeEncodingsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+VerifyLoweringToAsyncResourcesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+ElideAsyncCopiesPass
+  (S) 0 num-clones-elided    - Number of async clone operations elided
+  (S) 0 num-iterations       - Number of fixed-point iterations required for convergence
+  (S) 0 num-slices-elided    - Number of async slice operations elided
+  (S) 0 num-transfers-elided - Number of async transfer operations elided
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+RefineUsagePass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+ElideAsyncCopiesPass
+  (S) 0 num-clones-elided    - Number of async clone operations elided
+  (S) 0 num-iterations       - Number of fixed-point iterations required for convergence
+  (S) 0 num-slices-elided    - Number of async slice operations elided
+  (S) 0 num-transfers-elided - Number of async transfer operations elided
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+VerifyAsyncAccessRangesPass
+PlaceTransferExecutionsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+SyncInitializersPass
+PropagateTimepointsPass
+MaterializeBuiltinsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+VerifyLoweringToAsyncPass
+ScheduleAllocationPass
+EmplaceTransientsPass
+MaterializeTransientSizeQueriesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+PropagateSubrangesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+AutomaticReferenceCountingPass
+AnnotateConstantTransientSizePass
+VerifyLoweringToCmdPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FixedPointIteratorPass
+FuseDispatchBindingsPass
+AnnotateDispatchArgumentsPass
+AnnotateDispatchAssumptionsPass
+PackDispatchOperandsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+FoldUniformOperandsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+IPOPass
+SymbolDCEPass
+  (S) 0 num-dce'd - Number of symbols DCE'd
+VerifyInitializationOrderPass
+AttributeCallGraphPass
+AssignTargetDevicesPass
+MaterializeTargetDevicesPass
+ResolveDevicePromisesPass
+ResolveDeviceAliasesPass
+VerifyDevicesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 1 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+VerifyDevicesPass
+MaterializeInterfacesPass
+PruneExecutablesPass
+DumpExecutableSourcesPass
+'hal.executable' Pipeline
+  ConfigureExecutablesPass
+DumpExecutableSourcesPass
+'hal.executable' Pipeline
+  TranslateAllExecutablesPass
+ConvertToHALPass
+OutlineMemoizeRegionsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 2 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+PruneExecutablesPass
+LinkAllExecutablesPass
+'hal.executable' Pipeline
+  'hal.executable.variant' Pipeline
+    HoistExecutableObjectsPass
+ResolveExportOrdinalsPass
+MaterializeResourceCachesPass
+ResolveTopologyQueriesPass
+MemoizeDeviceSelectionPass
+MemoizeDeviceQueriesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 4 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+InitializeDevicesPass
+IREEAffineExpandIndexOpsPass
+IREELowerAffinePass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+'hal.executable' Pipeline
+  SerializeAllExecutablesPass
+PruneExecutablesPass
+SymbolDCEPass
+  (S) 0 num-dce'd - Number of symbols DCE'd
+FixedPointIteratorPass
+InlinerPass
+SymbolDCEPass
+  (S) 0 num-dce'd - Number of symbols DCE'd
+VerifyInitializationOrderPass
+CombineInitializersPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+ArithUnsignedWhenEquivalentPass
+PropagateSubrangesPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+'vm.module' Pipeline
+  DropUnusedCallsPass
+SymbolDCEPass
+  (S) 0 num-dce'd - Number of symbols DCE'd
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 3 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+ConversionPass
+'vm.module' Pipeline
+  ReifyRodataTablesPass
+  HoistInlinedRodataPass
+  DeduplicateRodataPass
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+'vm.module' Pipeline
+  DropUnusedCallsPass
+SymbolDCEPass
+  (S) 40 num-dce'd - Number of symbols DCE'd
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 0 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+'vm.module' Pipeline
+  ResolveRodataLoadsPass
+InlinerPass
+SymbolDCEPass
+  (S) 0 num-dce'd - Number of symbols DCE'd
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+'vm.module' Pipeline
+  DropUnusedCallsPass
+SymbolDCEPass
+  (S) 0 num-dce'd - Number of symbols DCE'd
+mlir::iree_compiler::detail::OpPipelineAdaptorPass
+FoldGlobalsPass
+  (S) 0 global ops after folding  - Number of util.global ops after folding
+  (S) 0 global ops before folding - Number of util.global ops before folding
+FuseGlobalsPass
+'vm.module' Pipeline
+  GlobalInitializationPass
+CanonicalizerPass
+CSEPass
+  (S) 1 num-cse'd - Number of operations CSE'd
+  (S) 0 num-dce'd - Number of operations DCE'd
+CanonicalizerPass
+'vm.module' Pipeline
+  DropEmptyModuleInitializersPass
+  AnnotateFunctionsPass
+  ConvertToYieldableCallsPass
+  DropOptimizationBarriersPass
+  MaterializeRefDiscardsPass
+
+===-------------------------------------------------------------------------===
+                         ... Execution time report ...
+===-------------------------------------------------------------------------===
+  Total Execution Time: 0.3235 seconds
+
+  ----User Time----  ----Wall Time----  ----Name----
+    0.0001 (  0.0%)    0.0001 (  0.0%)  AutoInputConversionPipelinePass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  IREEImportPublicPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  ImportMLProgramPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  SanitizeModuleNamesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  DemoteF64ToF32Pass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  ConvertStreamableOpsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  WrapEntryPointsPass
+    0.0013 (  0.3%)    0.0013 (  0.4%)  InlinerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    (A) CallGraph
+    0.0834 ( 19.4%)    0.0346 ( 10.7%)  'util.func' Pipeline
+    0.0003 (  0.1%)    0.0003 (  0.1%)    CanonicalizerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    AttrBasedPipelinePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    WarnOnUninitializedValuesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LinalgQuantizedConvToConvPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    LinalgQuantizedMatmulToMatmulPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    RemoveZeroExtentTensorsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    DetachElementwiseFromNamedOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyDepthwiseConvPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertElementwiseToLinalgPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    RaiseSpecialOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    DecomposeConcatPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    GeneralizeLinalgNamedOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    InsertTensorBarriersPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FoldReshapesIntoTensorBarriersPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    DemoteContractionInputsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertBatchMatmulToMatmulPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)    PropagateLinalgTransposePass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    GeneralizeLinalgNamedOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    GlobalLoopInvariantCodeMotionPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    RaiseSpecialOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    InjectTensorTracingPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    FusionPreprocessingPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ElementwiseOpFusionPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FoldReshapesIntoTensorBarriersPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    BubbleUpExpandShapesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ElementwiseOpFusionPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SinkReshapesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FuseMultiUseElementwiseProducerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SplitReductionPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FormSplitReductionDispatchesPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    TransposeGenericOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    PropagateEncodingsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FormScalarDispatchesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    FormDispatchRegionsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ElementwiseOpFusionPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FuseMultiUseElementwiseProducerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CloneProducersIntoDispatchRegionsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    CollapseDimensionsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    HoistUniformScalarComputePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FuseEncodingOpsIntoDispatchRegionsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertEncodingToFlowPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    RemoveTensorBarriersPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    ConvertDispatchRegionsToWorkgroupsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    ConvertTensorToFlowPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    MaterializeDefaultWorkgroupCountRegionPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    BitcastUnsupportedElementTypesPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    InitializeEmptyTensorsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CaptureDynamicDimsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    InjectTensorTracingPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CleanupTensorShapesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0008 (  0.2%)    0.0008 (  0.3%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    ApplyPatternsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    EncodeHostTensorsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LayoutSlicesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    ApplyPatternsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    MaterializeCopyOnWritePass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    EmplaceAllocationsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    ApplyPatternsPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    ScheduleExecutionPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ScheduleConcurrencyPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    ApplyPatternsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    PackConstantsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LayoutSlicesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    ApplyPatternsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ReuseAllocationsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SCFToControlFlowPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OptimizeIntArithmeticPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0011 (  0.3%)    0.0011 (  0.3%)    ApplyPatternsPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)    CanonicalizerPass
+    0.0008 (  0.2%)    0.0005 (  0.2%)    ElideRedundantCommandsPass
+    0.0050 (  1.2%)    0.0015 (  0.5%)    CanonicalizerPass
+    0.0070 (  1.6%)    0.0020 (  0.6%)    CSEPass
+    0.0028 (  0.6%)    0.0013 (  0.4%)      (A) DominanceInfo
+    0.0040 (  0.9%)    0.0013 (  0.4%)    SimplifyGlobalAccessesPass
+    0.0083 (  1.9%)    0.0024 (  0.7%)    ApplyPatternsPass
+    0.0003 (  0.1%)    0.0002 (  0.1%)    CanonicalizerPass
+    0.0006 (  0.1%)    0.0004 (  0.1%)    CSEPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      (A) DominanceInfo
+    0.0008 (  0.2%)    0.0004 (  0.1%)    CanonicalizerPass
+    0.0010 (  0.2%)    0.0006 (  0.2%)    CSEPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)      (A) DominanceInfo
+    0.0007 (  0.2%)    0.0003 (  0.1%)    SimplifyGlobalAccessesPass
+    0.0020 (  0.5%)    0.0008 (  0.2%)    ApplyPatternsPass
+    0.0010 (  0.2%)    0.0004 (  0.1%)    CanonicalizerPass
+    0.0005 (  0.1%)    0.0002 (  0.1%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0004 (  0.1%)    0.0003 (  0.1%)    SimplifyGlobalAccessesPass
+    0.0025 (  0.6%)    0.0010 (  0.3%)    ApplyPatternsPass
+    0.0004 (  0.1%)    0.0003 (  0.1%)    SCFToControlFlowPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    SCFForLoopCanonicalization
+    0.0005 (  0.1%)    0.0002 (  0.1%)    LoopInvariantCodeMotionPass
+    0.0005 (  0.1%)    0.0002 (  0.1%)    SCFToControlFlowPass
+    0.0004 (  0.1%)    0.0002 (  0.1%)    IREEAffineExpandIndexOpsPass
+    0.0004 (  0.1%)    0.0002 (  0.1%)    IREELowerAffinePass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0013 (  0.3%)    0.0007 (  0.2%)    ApplyPatternsPass
+    0.0007 (  0.2%)    0.0007 (  0.2%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  SymbolDCEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  AssignTargetDevicesPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  MaterializeTargetDevicesPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  ResolveDevicePromisesPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  ResolveDeviceAliasesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  VerifyDevicesPass
+    0.0017 (  0.4%)    0.0017 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  EraseUnusedLinalgOperandsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  ExpandTensorShapesPass
+    0.0008 (  0.2%)    0.0008 (  0.2%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FoldUnitExtentDimsPass
+    0.0021 (  0.5%)    0.0021 (  0.6%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  ConvertStridedContractionToContractionPass
+    0.0017 (  0.4%)    0.0017 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  IPOPass
+    0.0008 (  0.2%)    0.0008 (  0.2%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  HoistIntoGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    (A) iree_compiler::IREE::Util::ConstExprAnalysis
+    0.0008 (  0.2%)    0.0008 (  0.2%)  JitGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    (A) iree_compiler::IREE::Util::ConstExprAnalysis
+    0.0011 (  0.3%)    0.0011 (  0.3%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  TensorPadToTensorInsertSlicePass
+    0.0026 (  0.6%)    0.0026 (  0.8%)  FixedPointIteratorPass
+    0.0461 ( 10.7%)    0.0461 ( 14.2%)  'builtin.module' Pipeline
+    0.0015 (  0.3%)    0.0015 (  0.5%)    mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    FoldGlobalsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FuseGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    IPOPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    OutlineConstantsPass
+    0.0020 (  0.5%)    0.0020 (  0.6%)    mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0007 (  0.2%)    0.0007 (  0.2%)    FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    FuseGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    IPOPass
+    0.0017 (  0.4%)    0.0017 (  0.5%)    mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    IPOPass
+    0.0020 (  0.5%)    0.0020 (  0.6%)    mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    IPOPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    ElideTimepointsPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)    mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0022 (  0.5%)    0.0022 (  0.7%)    LinkTargetExecutablesPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    LLVMCPULinkExecutablesPass
+    0.0009 (  0.2%)    0.0009 (  0.3%)    'hal.executable' Pipeline
+    0.0002 (  0.0%)    0.0002 (  0.1%)      CanonicalizerPass
+    0.0005 (  0.1%)    0.0005 (  0.2%)      'hal.executable.variant' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)        LLVMCPUAssignConstantOrdinalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)        LLVMCPUAssignImportOrdinalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    SymbolDCEPass
+    0.0150 (  3.5%)    0.0150 (  4.6%)    mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0031 (  0.7%)    0.0031 (  1.0%)    FoldGlobalsPass
+    0.0007 (  0.2%)    0.0007 (  0.2%)    FuseGlobalsPass
+    0.0013 (  0.3%)    0.0013 (  0.4%)    IPOPass
+    0.0051 (  1.2%)    0.0051 (  1.6%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  HoistIntoGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    (A) iree_compiler::IREE::Util::ConstExprAnalysis
+    0.0020 (  0.5%)    0.0020 (  0.6%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  HoistIntoGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    (A) iree_compiler::IREE::Util::ConstExprAnalysis
+    0.0021 (  0.5%)    0.0021 (  0.6%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  VerifyInputLegalityPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  VerifyInitializationOrderPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  AttributeCallGraphPass
+    0.0010 (  0.2%)    0.0010 (  0.3%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  OutlineDispatchExternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  OutlineDispatchRegionsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  AnnotateDispatchesPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)  'flow.executable' Pipeline
+    0.0000 (  0.0%)    0.0000 (  0.0%)    StripDebugOpsPass
+    0.0007 (  0.2%)    0.0007 (  0.2%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  DeduplicateExecutablesPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0040 (  0.9%)    0.0040 (  1.2%)  FixedPointIteratorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  'flow.executable' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)  SymbolDCEPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  VerifyInitializationOrderPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  VerifyInputPass
+    0.0016 (  0.4%)    0.0016 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  IPOPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)  CloneToConsumersPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  ConvertToStreamPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  VerifyLoweringToTensorsPass
+    0.0015 (  0.4%)    0.0015 (  0.5%)  InlinerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    (A) CallGraph
+    0.0331 (  7.7%)    0.0331 ( 10.2%)  'func.func' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    TypePropagationPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    BubbleUpOrdinalOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    BufferizeCopyOnlyDispatchesPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    DecomposeSoftmaxPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertAttentionToOnlineAttentionPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)    MaterializeDeviceEncodingPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CPUPropagateDataLayoutPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    RematerializeParallelOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    InsertBatchDimForBatchlessConvPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ExpandF16OpToF32Pass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertAccGEMMToGEMMPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    EraseHALDescriptorTypeFromMemRefPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    BufferizeDispatchTensorLoadStorePass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CombineResultLayoutTransformationPass
+    0.0141 (  3.3%)    0.0141 (  4.3%)    LLVMCPULowerExecutableTargetPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)    TileAndDistributeToWorkgroupsUsingForallOpPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    BufferizeDispatchTensorLoadStorePass
+    0.0002 (  0.0%)    0.0002 (  0.0%)    CombineResultLayoutTransformationPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    ConfigTrackingCanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FuseTensorPadWithConsumerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    ConcretizePadResultShapePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    PropagateDispatchSizeBoundsPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)    LLVMCPUTileAndFuseProducerConsumerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FuseTensorPadWithConsumerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    ConcretizePadResultShapePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LLVMCPUSplitReductionPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)    LLVMCPUTileAndFuseProducerConsumerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    LLVMCPUTilePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FuseTensorPadWithConsumerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    ConcretizePadResultShapePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LLVMCPUTileAndFuseProducerConsumerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FuseTensorPadWithConsumerPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    ConcretizePadResultShapePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ForallToForPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    LLVMCPUPeelPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    TensorToVectorVectorizePadPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    LLVMCPUTileToVectorSizePass
+    0.0010 (  0.2%)    0.0010 (  0.3%)    GenericVectorizationPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)    OptimizeTensorInsertExtractSlicesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LLVMCPUVerifyVectorSizeLegalityPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    EliminateEmptyTensorsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    EmptyTensorToAllocTensorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    IREEComprehensiveBufferizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    IREEInjectAssumeAlignmentPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ResolveShapedTypeResultDimsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    IREECodegenCanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    IREECodegenCanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CleanupBufferAllocViewPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    PropagateDispatchSizeBoundsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    RemoveSingleIterationLoopPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)    DropVectorUnitDimsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    HoistInnerTiledAccReshapesPass
+    0.0005 (  0.1%)    0.0005 (  0.1%)    LLVMCPUVirtualVectorLoweringPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)    VectorTransferLoweringPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LLVMCPUVectorTransposeLoweringPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LLVMCPUVectorShapeCastLoweringPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    VerifyWorkgroupDistributionPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    EraseHALDescriptorTypeFromMemRefPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LinalgExtToLoopsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    MemrefCopyToLinalgPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertLinalgToLoopsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertBf16ArithToF32Pass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertUnsupportedFloatToIntBuffersPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0000 (  0.0%)    0.0000 (  0.0%)    FoldTensorExtractOpPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertComplexToStandardPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    MathTransformPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    HoistStaticallyBoundAllocationsPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)    VectorTransferLoweringPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    FoldMemRefAliasOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    IREEExpandStridedMetadataPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CleanupBufferAllocViewPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LLVMCPUAssignWorkgroupLocalMemoryPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    LLVMCPUCheckIRBeforeLLVMConversionPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    SCFToControlFlowPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0002 (  0.0%)    0.0002 (  0.1%)    FoldMemRefAliasOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    IREEAffineExpandIndexOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ArithExpandOpsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    ConvertUnsupportedFloatArithPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    EmulateNarrowTypePass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      (A) DominanceInfo
+    0.0018 (  0.4%)    0.0018 (  0.6%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)  IPOPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  CombineInitializersPass
+    0.0035 (  0.8%)    0.0035 (  1.1%)  FixedPointIteratorPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  SpecializeEncodingsPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  'stream.executable' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)    EncodeDeviceTensorsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  MaterializeEncodingsPass
+    0.0018 (  0.4%)    0.0018 (  0.6%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  IPOPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  VerifyLoweringToAsyncResourcesPass
+    0.0008 (  0.2%)    0.0008 (  0.2%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  ElideAsyncCopiesPass
+    0.0008 (  0.2%)    0.0008 (  0.2%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  RefineUsagePass
+    0.0007 (  0.2%)    0.0007 (  0.2%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)  ElideAsyncCopiesPass
+    0.0017 (  0.4%)    0.0017 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  IPOPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  VerifyAsyncAccessRangesPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  PlaceTransferExecutionsPass
+    0.0009 (  0.2%)    0.0009 (  0.3%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  SyncInitializersPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  PropagateTimepointsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  MaterializeBuiltinsPass
+    0.0018 (  0.4%)    0.0018 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  IPOPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  VerifyLoweringToAsyncPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)  ScheduleAllocationPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)  EmplaceTransientsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  MaterializeTransientSizeQueriesPass
+    0.0009 (  0.2%)    0.0009 (  0.3%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  PropagateSubrangesPass
+    0.0018 (  0.4%)    0.0018 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)  IPOPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  AutomaticReferenceCountingPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  AnnotateConstantTransientSizePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)  VerifyLoweringToCmdPass
+    0.0017 (  0.4%)    0.0017 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)  IPOPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0044 (  1.0%)    0.0044 (  1.4%)  FixedPointIteratorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseDispatchBindingsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  AnnotateDispatchArgumentsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  AnnotateDispatchAssumptionsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  PackDispatchOperandsPass
+    0.0019 (  0.5%)    0.0019 (  0.6%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.2%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  IPOPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FoldUniformOperandsPass
+    0.0018 (  0.4%)    0.0018 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)  IPOPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  SymbolDCEPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  VerifyInitializationOrderPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  AttributeCallGraphPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  AssignTargetDevicesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  MaterializeTargetDevicesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  ResolveDevicePromisesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  ResolveDeviceAliasesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  VerifyDevicesPass
+    0.0025 (  0.6%)    0.0025 (  0.8%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0011 (  0.3%)    0.0011 (  0.3%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  VerifyDevicesPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  MaterializeInterfacesPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  PruneExecutablesPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  DumpExecutableSourcesPass
+    0.0054 (  1.3%)    0.0054 (  1.7%)  'hal.executable' Pipeline
+    0.0052 (  1.2%)    0.0052 (  1.6%)    ConfigureExecutablesPass
+    0.1106 ( 25.7%)    0.1106 ( 34.2%)  'hal.executable' Pipeline
+    0.0051 (  1.2%)    0.0051 (  1.6%)    'hal.executable.variant' Pipeline
+    0.0049 (  1.1%)    0.0049 (  1.5%)      ConfigureTargetExecutableVariantsPass
+    0.0290 (  6.7%)    0.0290 (  9.0%)    'hal.executable.variant' Pipeline
+    0.0287 (  6.7%)    0.0287 (  8.9%)      TranslateTargetExecutableVariantsPass
+    0.0763 ( 17.8%)    0.0763 ( 23.6%)    SerializeTargetExecutablesPass
+    0.0321 (  7.5%)    0.0321 (  9.9%)  'hal.executable.variant' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)    SpecializeExportsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CreateDispatchConfigPass
+    0.0043 (  1.0%)    0.0043 (  1.3%)    'builtin.module' Pipeline
+    0.0008 (  0.2%)    0.0008 (  0.2%)      mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      MaterializeTuningSpecsPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      MaterializeUserConfigsPass
+    0.0026 (  0.6%)    0.0026 (  0.8%)      mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      LLVMCPUSelectLoweringStrategyPass
+    0.0268 (  6.2%)    0.0268 (  8.3%)    'builtin.module' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)      LowerExecutableUsingTransformDialectPass
+    0.0144 (  3.4%)    0.0144 (  4.4%)      mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      ReconcileTranslationInfoPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      ResolveWorkgroupCountHintsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      IREELowerAffinePass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      DropCompilerHintsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)      mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      LowerUKernelOpsToCallsPass
+    0.0017 (  0.4%)    0.0017 (  0.5%)      mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      IREEBufferizeConstantsPass
+    0.0050 (  1.2%)    0.0050 (  1.5%)      mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0021 (  0.5%)    0.0021 (  0.6%)      ConvertToLLVMPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)        (A) DataLayoutAnalysis
+    0.0001 (  0.0%)    0.0001 (  0.0%)      ReconcileUnrealizedCastsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      LLVMCPUSynchronizeSymbolVisibilityPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)      CanonicalizerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)      CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)        (A) DominanceInfo
+    0.0002 (  0.0%)    0.0002 (  0.1%)      'llvm.func' Pipeline
+    0.0000 (  0.0%)    0.0000 (  0.0%)        AddFastMathFlagsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)    PropagateDispatchConfigPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  DumpExecutableSourcesPass
+    0.0293 (  6.8%)    0.0293 (  9.0%)  'hal.executable' Pipeline
+    0.0291 (  6.8%)    0.0291 (  9.0%)    TranslateAllExecutablesPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)  ConvertToHALPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)  OutlineMemoizeRegionsPass
+    0.0035 (  0.8%)    0.0035 (  1.1%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0011 (  0.3%)    0.0011 (  0.3%)  FoldGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  FuseGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.0%)  PruneExecutablesPass
+    0.0035 (  0.8%)    0.0035 (  1.1%)  LinkAllExecutablesPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  'hal.executable' Pipeline
+    0.0003 (  0.1%)    0.0003 (  0.1%)    'hal.executable.variant' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)      HoistExecutableObjectsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  ResolveExportOrdinalsPass
+    0.0005 (  0.1%)    0.0005 (  0.1%)  MaterializeResourceCachesPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)  ResolveTopologyQueriesPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  MemoizeDeviceSelectionPass
+    0.0005 (  0.1%)    0.0005 (  0.1%)  MemoizeDeviceQueriesPass
+    0.0040 (  0.9%)    0.0040 (  1.2%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0010 (  0.2%)    0.0010 (  0.3%)  FoldGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  FuseGlobalsPass
+    0.0010 (  0.2%)    0.0010 (  0.3%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)  InitializeDevicesPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  IREEAffineExpandIndexOpsPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  IREELowerAffinePass
+    0.0009 (  0.2%)    0.0009 (  0.3%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0765 ( 17.8%)    0.0765 ( 23.7%)  'hal.executable' Pipeline
+    0.0765 ( 17.8%)    0.0765 ( 23.6%)    SerializeAllExecutablesPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  PruneExecutablesPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  SymbolDCEPass
+    0.0265 (  6.2%)    0.0265 (  8.2%)  FixedPointIteratorPass
+    0.0020 (  0.5%)    0.0020 (  0.6%)  InlinerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    (A) CallGraph
+    0.0577 ( 13.4%)    0.0148 (  4.6%)  'util.initializer' Pipeline
+    0.0003 (  0.1%)    0.0003 (  0.1%)    CanonicalizerPass
+    0.0007 (  0.2%)    0.0004 (  0.1%)    SCFToControlFlowPass
+    0.0064 (  1.5%)    0.0014 (  0.4%)    CanonicalizerPass
+    0.0075 (  1.7%)    0.0032 (  1.0%)    CSEPass
+    0.0021 (  0.5%)    0.0016 (  0.5%)      (A) DominanceInfo
+    0.0070 (  1.6%)    0.0020 (  0.6%)    SimplifyGlobalAccessesPass
+    0.0133 (  3.1%)    0.0031 (  0.9%)    ApplyPatternsPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)    SCFForLoopCanonicalization
+    0.0002 (  0.0%)    0.0002 (  0.1%)    LoopInvariantCodeMotionPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    SCFToControlFlowPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    IREEAffineExpandIndexOpsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    IREELowerAffinePass
+    0.0011 (  0.2%)    0.0006 (  0.2%)    CanonicalizerPass
+    0.0027 (  0.6%)    0.0013 (  0.4%)    CSEPass
+    0.0017 (  0.4%)    0.0010 (  0.3%)      (A) DominanceInfo
+    0.0004 (  0.1%)    0.0003 (  0.1%)    SimplifyGlobalAccessesPass
+    0.0024 (  0.6%)    0.0012 (  0.4%)    ApplyPatternsPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)    SimplifyGlobalAccessesPass
+    0.0007 (  0.2%)    0.0007 (  0.2%)    ApplyPatternsPass
+    0.0006 (  0.2%)    0.0004 (  0.1%)    ElideRedundantCommandsPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)    CanonicalizerPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    CSEPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      (A) DominanceInfo
+    0.0002 (  0.1%)    0.0002 (  0.1%)    CanonicalizerPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)    CSEPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)      (A) DominanceInfo
+    0.0001 (  0.0%)    0.0001 (  0.0%)    SimplifyGlobalAccessesPass
+    0.0006 (  0.1%)    0.0006 (  0.2%)    ApplyPatternsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  SymbolDCEPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  VerifyInitializationOrderPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  CombineInitializersPass
+    0.0018 (  0.4%)    0.0018 (  0.5%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)  ArithUnsignedWhenEquivalentPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  PropagateSubrangesPass
+    0.0014 (  0.3%)    0.0014 (  0.4%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  SymbolDCEPass
+    0.0012 (  0.3%)    0.0012 (  0.4%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0009 (  0.2%)    0.0009 (  0.3%)  FoldGlobalsPass
+    0.0001 (  0.0%)    0.0001 (  0.0%)  FuseGlobalsPass
+    0.0016 (  0.4%)    0.0016 (  0.5%)  ConversionPass
+    0.0025 (  0.6%)    0.0025 (  0.8%)  'vm.module' Pipeline
+    0.0003 (  0.1%)    0.0003 (  0.1%)    ReifyRodataTablesPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)    HoistInlinedRodataPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)    DeduplicateRodataPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0010 (  0.2%)    0.0010 (  0.3%)  'vm.module' Pipeline
+    0.0005 (  0.1%)    0.0005 (  0.1%)    DropUnusedCallsPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)  SymbolDCEPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0011 (  0.3%)    0.0011 (  0.3%)  FoldGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  FuseGlobalsPass
+    0.0009 (  0.2%)    0.0009 (  0.3%)  'vm.module' Pipeline
+    0.0004 (  0.1%)    0.0004 (  0.1%)    ResolveRodataLoadsPass
+    0.0020 (  0.5%)    0.0020 (  0.6%)  InlinerPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    (A) CallGraph
+    0.0005 (  0.1%)    0.0005 (  0.1%)  'vm.func' Pipeline
+    0.0002 (  0.0%)    0.0002 (  0.1%)    CanonicalizerPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)  'vm.initializer' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)    CanonicalizerPass
+    0.0002 (  0.1%)    0.0002 (  0.1%)  SymbolDCEPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0008 (  0.2%)    0.0008 (  0.2%)  'vm.module' Pipeline
+    0.0003 (  0.1%)    0.0003 (  0.1%)    DropUnusedCallsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  SymbolDCEPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  mlir::iree_compiler::detail::OpPipelineAdaptorPass
+    0.0008 (  0.2%)    0.0008 (  0.3%)  FoldGlobalsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  FuseGlobalsPass
+    0.0009 (  0.2%)    0.0009 (  0.3%)  'vm.module' Pipeline
+    0.0004 (  0.1%)    0.0004 (  0.1%)    GlobalInitializationPass
+    0.0004 (  0.1%)    0.0004 (  0.1%)  CanonicalizerPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)  CSEPass
+    0.0000 (  0.0%)    0.0000 (  0.0%)    (A) DominanceInfo
+    0.0003 (  0.1%)    0.0003 (  0.1%)  CanonicalizerPass
+    0.0033 (  0.8%)    0.0033 (  1.0%)  'vm.module' Pipeline
+    0.0001 (  0.0%)    0.0001 (  0.0%)    DropEmptyModuleInitializersPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    AnnotateFunctionsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    ConvertToYieldableCallsPass
+    0.0002 (  0.0%)    0.0002 (  0.1%)    DropOptimizationBarriersPass
+    0.0003 (  0.1%)    0.0003 (  0.1%)    MaterializeRefDiscardsPass
+   -0.1956 (-45.5%)   -0.2097 (-64.8%)  Rest
+    0.4294 (100.0%)    0.3235 (100.0%)  Total

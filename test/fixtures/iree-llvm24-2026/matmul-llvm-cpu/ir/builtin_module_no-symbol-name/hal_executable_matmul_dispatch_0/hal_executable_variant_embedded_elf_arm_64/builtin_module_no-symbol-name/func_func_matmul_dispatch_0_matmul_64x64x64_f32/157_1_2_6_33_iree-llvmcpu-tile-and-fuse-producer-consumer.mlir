@@ -1,0 +1,35 @@
+// -----// IR Dump After LLVMCPUTileAndFuseProducerConsumerPass: iree-llvmcpu-tile-and-fuse-producer-consumer{anchor-on-root-op=false only-fuse-producer-input-operands=false tiling-level=vector_inner_parallel} //----- //
+func.func @matmul_dispatch_0_matmul_64x64x64_f32() attributes {translation_info = #iree_codegen.translation_info<pipeline = #iree_cpu.pipeline<DoubleTilingExpert>, {enable_loop_peeling}>} {
+  %c4 = arith.constant 4 : index
+  %c64 = arith.constant 64 : index
+  %cst = arith.constant 0.000000e+00 : f32
+  %c0 = arith.constant 0 : index
+  %0 = hal.interface.binding.subspan layout(<bindings = [#hal.pipeline.binding<storage_buffer, "ReadOnly|Indirect">, #hal.pipeline.binding<storage_buffer, "ReadOnly|Indirect">, #hal.pipeline.binding<storage_buffer, Indirect>], flags = Indirect>) binding(0) alignment(64) offset(%c0) flags("ReadOnly|Indirect") : memref<64x64xf32, #hal.descriptor_type<storage_buffer>>
+  %1 = hal.interface.binding.subspan layout(<bindings = [#hal.pipeline.binding<storage_buffer, "ReadOnly|Indirect">, #hal.pipeline.binding<storage_buffer, "ReadOnly|Indirect">, #hal.pipeline.binding<storage_buffer, Indirect>], flags = Indirect>) binding(1) alignment(64) offset(%c0) flags("ReadOnly|Indirect") : memref<64x64xf32, #hal.descriptor_type<storage_buffer>>
+  %2 = hal.interface.binding.subspan layout(<bindings = [#hal.pipeline.binding<storage_buffer, "ReadOnly|Indirect">, #hal.pipeline.binding<storage_buffer, "ReadOnly|Indirect">, #hal.pipeline.binding<storage_buffer, Indirect>], flags = Indirect>) binding(2) alignment(64) offset(%c0) flags(Indirect) : memref<64x64xf32, #hal.descriptor_type<storage_buffer>>
+  %3 = iree_codegen.load_from_buffer %0 : memref<64x64xf32, #hal.descriptor_type<storage_buffer>> -> tensor<64x64xf32>
+  %4 = iree_codegen.load_from_buffer %1 : memref<64x64xf32, #hal.descriptor_type<storage_buffer>> -> tensor<64x64xf32>
+  %5 = tensor.empty() : tensor<64x64xf32>
+  %6 = scf.forall (%arg0) = (0) to (64) step (8) shared_outs(%arg1 = %5) -> (tensor<64x64xf32>) {
+    %extracted_slice = tensor.extract_slice %arg1[%arg0, 0] [8, 64] [1, 1] : tensor<64x64xf32> to tensor<8x64xf32>
+    %7 = scf.forall (%arg2) = (0) to (64) step (8) shared_outs(%arg3 = %extracted_slice) -> (tensor<8x64xf32>) {
+      %extracted_slice_0 = tensor.extract_slice %arg3[0, %arg2] [8, 8] [1, 1] : tensor<8x64xf32> to tensor<8x8xf32>
+      %8 = linalg.fill {lowering_config = #iree_cpu.lowering_config<cache_parallel = [8, 64], vector_common_parallel = [8, 8]>} ins(%cst : f32) outs(%extracted_slice_0 : tensor<8x8xf32>) -> tensor<8x8xf32>
+      %9 = scf.for %arg4 = %c0 to %c64 step %c4 iter_args(%arg5 = %8) -> (tensor<8x8xf32>) {
+        %extracted_slice_1 = tensor.extract_slice %3[%arg0, %arg4] [8, 4] [1, 1] : tensor<64x64xf32> to tensor<8x4xf32>
+        %extracted_slice_2 = tensor.extract_slice %4[%arg4, %arg2] [4, 8] [1, 1] : tensor<64x64xf32> to tensor<4x8xf32>
+        %10 = linalg.matmul {lowering_config = #iree_cpu.lowering_config<cache_parallel = [8, 64, 0], distribution = [8, 64, 0], vector_common_parallel = [8, 8, 0], vector_reduction = [0, 0, 4]>} ins(%extracted_slice_1, %extracted_slice_2 : tensor<8x4xf32>, tensor<4x8xf32>) outs(%arg5 : tensor<8x8xf32>) -> tensor<8x8xf32>
+        scf.yield %10 : tensor<8x8xf32>
+      }
+      scf.forall.in_parallel {
+        tensor.parallel_insert_slice %9 into %arg3[%c0, %arg2] [8, 8] [1, 1] : tensor<8x8xf32> into tensor<8x64xf32>
+      }
+    }
+    scf.forall.in_parallel {
+      tensor.parallel_insert_slice %7 into %arg1[%arg0, 0] [8, 64] [1, 1] : tensor<8x64xf32> into tensor<64x64xf32>
+    }
+  } {mapping = [#iree_codegen.workgroup_mapping<x>]}
+  iree_codegen.store_to_buffer %6, %2 : tensor<64x64xf32> into memref<64x64xf32, #hal.descriptor_type<storage_buffer>>
+  return
+}
+

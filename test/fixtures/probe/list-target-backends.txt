@@ -1,0 +1,6 @@
+Registered target backends:
+  dummy
+  llvm-cpu
+  vmvx
+  vmvx-inline
+  vulkan-spirv

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+out/
+media/*/main.js
+media/*/main.js.map
+media/*/style.css
+.vscode-test/
+*.vsix

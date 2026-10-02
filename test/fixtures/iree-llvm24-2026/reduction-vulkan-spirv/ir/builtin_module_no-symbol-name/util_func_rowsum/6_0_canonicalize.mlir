@@ -1,0 +1,8 @@
+// -----// IR Dump After CanonicalizerPass: canonicalize{cse-between-iterations=false    max-iterations=10 max-num-rewrites=-1 region-simplify=normal test-convergence=false top-down=true} //----- //
+util.func public @rowsum(%arg0: !hal.buffer_view) -> !hal.buffer_view attributes {iree.abi.stub, iree.reflection = {iree.abi.declaration = "sync func @rowsum(%input0: tensor<8x100xf32>) -> (%output0: tensor<8xf32>)"}} {
+  %0 = hal.tensor.import %arg0 "input0" : !hal.buffer_view -> tensor<8x100xf32>
+  %1 = util.call @_rowsum(%0) : (tensor<8x100xf32>) -> tensor<8xf32>
+  %2 = hal.tensor.export %1 "output0" : tensor<8xf32> -> !hal.buffer_view
+  util.return %2 : !hal.buffer_view
+}
+

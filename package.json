@@ -1,0 +1,441 @@
+{
+  "name": "iree-explorer",
+  "displayName": "IREE Explorer",
+  "description": "GUI front end for IREE compilation: target selection, pass pipeline explorer, IR diffs, tiling visualisation and dispatch inspection.",
+  "version": "0.2.4",
+  "publisher": "iree-explorer",
+  "license": "Apache-2.0",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Visualization",
+    "Debuggers"
+  ],
+  "keywords": [
+    "iree",
+    "mlir",
+    "compiler",
+    "codegen",
+    "tiling"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:mlir",
+    "workspaceContains:**/*.mlir"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ireeExplorer.compile",
+        "title": "Compile with IREE",
+        "category": "IREE",
+        "icon": "$(play)"
+      },
+      {
+        "command": "ireeExplorer.compileTo",
+        "title": "How Far to Compile (Stop After Phase)\u2026",
+        "category": "IREE",
+        "icon": "$(debug-step-out)"
+      },
+      {
+        "command": "ireeExplorer.cancel",
+        "title": "Cancel Compilation",
+        "category": "IREE",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "ireeExplorer.selectTarget",
+        "title": "Select Target",
+        "category": "IREE",
+        "icon": "$(cpu)"
+      },
+      {
+        "command": "ireeExplorer.openPipeline",
+        "title": "Open Pass Output",
+        "category": "IREE"
+      },
+      {
+        "command": "ireeExplorer.diffWithPrevious",
+        "title": "Diff with Previous",
+        "category": "IREE",
+        "icon": "$(diff)"
+      },
+      {
+        "command": "ireeExplorer.diffSelected",
+        "title": "Diff Selected",
+        "category": "IREE",
+        "icon": "$(diff-multiple)"
+      },
+      {
+        "command": "ireeExplorer.copyRepro",
+        "title": "Copy Repro Command",
+        "category": "IREE",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "ireeExplorer.showTiling",
+        "title": "Show Tiling",
+        "category": "IREE",
+        "icon": "$(layout)"
+      },
+      {
+        "command": "ireeExplorer.revealDumpDir",
+        "title": "Show Dump Files",
+        "category": "IREE",
+        "icon": "$(files)"
+      },
+      {
+        "command": "ireeExplorer.clearCache",
+        "title": "Clear Dumps and Probe Cache",
+        "category": "IREE",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "ireeExplorer.toggleUnchanged",
+        "title": "Toggle Unchanged Passes",
+        "category": "IREE",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "ireeExplorer.sortPasses",
+        "title": "Sort Passes\u2026",
+        "category": "IREE",
+        "icon": "$(list-ordered)"
+      },
+      {
+        "command": "ireeExplorer.sortDispatches",
+        "title": "Sort Dispatches\u2026",
+        "category": "IREE",
+        "icon": "$(list-ordered)"
+      },
+      {
+        "command": "ireeExplorer.setOutputDir",
+        "title": "Change Output Folder\u2026",
+        "category": "IREE",
+        "icon": "$(folder)"
+      },
+      {
+        "command": "ireeExplorer.revealInOS",
+        "title": "Reveal in Finder / File Explorer",
+        "category": "IREE"
+      },
+      {
+        "command": "ireeExplorer.copyPath",
+        "title": "Copy Path",
+        "category": "IREE"
+      },
+      {
+        "command": "ireeExplorer.manageTargets",
+        "title": "Manage Targets (add/remove backend)\u2026",
+        "category": "IREE",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "ireeExplorer.showDataFlow",
+        "title": "Show Data Flow",
+        "category": "IREE",
+        "icon": "$(type-hierarchy)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ireeExplorer",
+          "title": "IREE",
+          "icon": "media/iree.svg"
+        }
+      ]
+    },
+    "views": {
+      "ireeExplorer": [
+        {
+          "id": "ireeExplorer.pipeline",
+          "name": "Pass Pipeline"
+        },
+        {
+          "id": "ireeExplorer.dispatches",
+          "name": "Dispatches"
+        },
+        {
+          "id": "ireeExplorer.dumpFiles",
+          "name": "Dump Files"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "ireeExplorer.pipeline",
+        "contents": "No compilation yet.\n[$(play) Compile Active File](command:ireeExplorer.compile)\n[$(cpu) Select Target](command:ireeExplorer.selectTarget)\n[$(debug-step-out) How Far to Compile\u2026](command:ireeExplorer.compileTo)"
+      },
+      {
+        "view": "ireeExplorer.dispatches",
+        "contents": "Dispatches appear here after a compile that reaches executable-sources or later."
+      },
+      {
+        "view": "ireeExplorer.dumpFiles",
+        "contents": "The output folder of the last compile appears here.\n[$(folder) Change Output Folder\u2026](command:ireeExplorer.setOutputDir)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "ireeExplorer.compile",
+          "when": "view == ireeExplorer.pipeline",
+          "group": "navigation@1"
+        },
+        {
+          "command": "ireeExplorer.compileTo",
+          "when": "view == ireeExplorer.pipeline",
+          "group": "navigation@2"
+        },
+        {
+          "command": "ireeExplorer.toggleUnchanged",
+          "when": "view == ireeExplorer.pipeline",
+          "group": "navigation@3"
+        },
+        {
+          "command": "ireeExplorer.sortPasses",
+          "when": "view == ireeExplorer.pipeline",
+          "group": "navigation@4"
+        },
+        {
+          "command": "ireeExplorer.diffSelected",
+          "when": "view == ireeExplorer.pipeline",
+          "group": "navigation@5"
+        },
+        {
+          "command": "ireeExplorer.manageTargets",
+          "when": "view == ireeExplorer.pipeline",
+          "group": "overflow@1"
+        },
+        {
+          "command": "ireeExplorer.clearCache",
+          "when": "view == ireeExplorer.pipeline",
+          "group": "overflow@2"
+        },
+        {
+          "command": "ireeExplorer.showDataFlow",
+          "when": "view == ireeExplorer.dispatches",
+          "group": "navigation@1"
+        },
+        {
+          "command": "ireeExplorer.sortDispatches",
+          "when": "view == ireeExplorer.dispatches",
+          "group": "navigation@2"
+        },
+        {
+          "command": "ireeExplorer.setOutputDir",
+          "when": "view == ireeExplorer.dumpFiles",
+          "group": "navigation@1"
+        },
+        {
+          "command": "ireeExplorer.revealInOS",
+          "when": "view == ireeExplorer.dumpFiles",
+          "group": "overflow"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "ireeExplorer.copyRepro",
+          "when": "view == ireeExplorer.pipeline && viewItem == pass",
+          "group": "inline"
+        },
+        {
+          "command": "ireeExplorer.diffWithPrevious",
+          "when": "view == ireeExplorer.pipeline && viewItem == pass",
+          "group": "1_diff@1"
+        },
+        {
+          "command": "ireeExplorer.diffSelected",
+          "when": "view == ireeExplorer.pipeline && viewItem == pass",
+          "group": "1_diff@2"
+        },
+        {
+          "command": "ireeExplorer.copyRepro",
+          "when": "view == ireeExplorer.pipeline && viewItem == pass",
+          "group": "2_repro"
+        },
+        {
+          "command": "ireeExplorer.showTiling",
+          "when": "view == ireeExplorer.dispatches && viewItem == dispatch",
+          "group": "inline"
+        },
+        {
+          "command": "ireeExplorer.copyPath",
+          "when": "view == ireeExplorer.dumpFiles",
+          "group": "1_copy"
+        },
+        {
+          "command": "ireeExplorer.revealInOS",
+          "when": "view == ireeExplorer.dumpFiles",
+          "group": "2_reveal"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "ireeExplorer.openPipeline",
+          "when": "false"
+        },
+        {
+          "command": "ireeExplorer.diffWithPrevious",
+          "when": "false"
+        },
+        {
+          "command": "ireeExplorer.copyRepro",
+          "when": "false"
+        },
+        {
+          "command": "ireeExplorer.revealInOS",
+          "when": "false"
+        },
+        {
+          "command": "ireeExplorer.copyPath",
+          "when": "false"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "ireeExplorer.compile",
+          "when": "resourceExtname == .mlir",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "IREE Explorer",
+      "properties": {
+        "ireeExplorer.compilerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to iree-compile. Empty means look it up on PATH."
+        },
+        "ireeExplorer.optPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to iree-opt, used in repro commands. Empty means iree-opt next to iree-compile, else PATH."
+        },
+        "ireeExplorer.entryFile": {
+          "type": "string",
+          "default": "",
+          "description": "Input file to compile if not the active editor. Relative paths resolve against the first workspace folder."
+        },
+        "ireeExplorer.activeTarget": {
+          "type": "string",
+          "default": "",
+          "description": "Id of the selected target profile."
+        },
+        "ireeExplorer.targets": {
+          "type": "array",
+          "default": [],
+          "description": "Custom target profiles. Merged with built-ins; a custom profile wins on id collision.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "device": {
+                "type": "string",
+                "description": "Value for --iree-hal-target-device."
+              },
+              "backend": {
+                "type": "string",
+                "description": "Value for the legacy --iree-hal-target-backends flag. Used when the binary lacks --iree-hal-target-device or no device is given."
+              },
+              "deviceFlags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "extraFlags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sharedMemoryBudgetBytes": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "ireeExplorer.extraFlags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Flags appended to every iree-compile invocation."
+        },
+        "ireeExplorer.elideAttrsLargerThan": {
+          "type": "number",
+          "default": 16,
+          "minimum": 0,
+          "description": "Value for --mlir-elide-elementsattrs-if-larger. Keeps dumps of real models from exploding in size."
+        },
+        "ireeExplorer.showUnchangedPasses": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show passes whose output is identical to the previous pass in the same scope."
+        },
+        "ireeExplorer.dumpBinaries": {
+          "type": "boolean",
+          "default": false,
+          "description": "Also dump executable binaries and intermediates (large)."
+        },
+        "ireeExplorer.keepDumpDirs": {
+          "type": "number",
+          "default": 3,
+          "minimum": 1,
+          "description": "How many compile dump directories to keep."
+        },
+        "ireeExplorer.sharedMemoryBudgetBytes": {
+          "type": "number",
+          "default": 65536,
+          "description": "Default per-workgroup shared memory budget for the tiling fit check. Overridable per target profile."
+        },
+        "ireeExplorer.compileTo": {
+          "type": "string",
+          "default": "end",
+          "description": "How far to compile: 'end' produces a .vmfb; an earlier phase (e.g. 'flow', 'stream') stops there and writes the IR as .mlir. Set from the status bar."
+        },
+        "ireeExplorer.outputDir": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Where compile output (dumps + `.vmfb`) goes. Each compile gets a timestamped subfolder. Supports `${inputDir}` and `${workspaceFolder}`; `extension-storage` uses VS Code's hidden storage. Empty = ask on first compile."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc -p . --noEmit && tsc -p src/webview --noEmit && tsc -p test/integration --noEmit",
+    "test": "vitest run",
+    "test:integration": "npm run build && tsc -p test/integration && node out/integration/runTests.js",
+    "package": "npm run build -- --production && vsce package",
+    "vscode:prepublish": "npm run build -- --production"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^30.0.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.14.0",
+    "@types/vscode": "1.90.0",
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.25.0",
+    "jsdom": "^26.1.0",
+    "mocha": "^10.8.2",
+    "typescript": "^5.6.0",
+    "vitest": "^3.2.0"
+  }
+}

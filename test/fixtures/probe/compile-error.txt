@@ -1,0 +1,3 @@
+bad.mlir:2:23: error: use of undeclared SSA value name
+  %x = arith.addf %a, %b : tensor<4xf32>
+                      ^

@@ -1,0 +1,1 @@
+{"inputPath":"inputs/conv.mlir","targetId":"vulkan-spirv","targetLabel":"vulkan-spirv","args":[],"compilerPath":"iree-compile","startedAt":0,"outputPath":"","sharedMemoryBudgetBytes":65536}

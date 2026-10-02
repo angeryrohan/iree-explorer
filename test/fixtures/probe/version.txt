@@ -1,0 +1,4 @@
+IREE (https://iree.dev):
+  IREE compiler version (unknown)
+  LLVM version 24.0.0git
+  Optimized build with assertions
